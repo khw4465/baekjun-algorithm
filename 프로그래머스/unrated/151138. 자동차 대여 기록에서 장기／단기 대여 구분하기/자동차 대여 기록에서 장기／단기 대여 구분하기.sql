@@ -1,10 +1,10 @@
 -- 코드를 입력하세요
 SELECT history_id,
        car_id,
-       SUBSTR(start_date, 1, 10),
-       SUBSTR(end_date, 1, 10), 
+       DATE_FORMAT(START_DATE,'%Y-%m-%d'),
+       DATE_FORMAT(END_DATE,'%Y-%m-%d'), 
        CASE
-        WHEN TIMESTAMPDIFF(day, start_date, end_date) >= 29 THEN '장기 대여'
+        WHEN DATEDIFF(end_date, start_date) >= 29 THEN '장기 대여'
         ELSE '단기 대여'
        END rent_type
 FROM car_rental_company_rental_history
